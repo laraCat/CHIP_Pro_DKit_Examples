@@ -17,14 +17,14 @@ echo 20000000 > /sys/class/pwm/pwmchip0/pwm0/period
 echo 0000000 > /sys/class/pwm/pwmchip0/pwm0/duty_cycle
 
 while true; do
-        for i in {$min $max 1000000}; do
+        for i in {$min $max 100000}; do
                 echo $i > /sys/class/pwm/pwmchip0/pwm0/duty_cycle
                 sleep $speed
         done
         
         sleep $pause
         
-        for i in {$max $min 1000000}; do
+        for i in {$max $min 100000}; do
                 echo $i > /sys/class/pwm/pwmchip0/pwm0/duty_cycle
                 sleep $speed
         done
