@@ -29,7 +29,7 @@ while true; do
                 sleep $speed
         done
         
-		sleep $pause
+	sleep $pause
 		
 done
 
