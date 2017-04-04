@@ -11,26 +11,29 @@ cleanup() { # Release the GPIO port
 }
 
 echo $servo0 > /sys/class/pwm/pwmchip0/export
-echo normal > /sys/class/pwm/pwmchip0/pwm0/polarity 
+echo "normal" > /sys/class/pwm/pwmchip0/pwm0/polarity
 echo 1 > /sys/class/pwm/pwmchip0/pwm0/enable
+#echo normal > /sys/class/pwm/pwmchip0/pwm0/polarity
 echo 20000000 > /sys/class/pwm/pwmchip0/pwm0/period
-echo 0000000 > /sys/class/pwm/pwmchip0/pwm0/duty_cycle
+echo 0 > /sys/class/pwm/pwmchip0/pwm0/duty_cycle
 
 while true; do
-        for i in {$min $max 100000}; do
-                echo $i > /sys/class/pwm/pwmchip0/pwm0/duty_cycle
-                sleep $speed
+        for i in $(seq 600000 100000 2400000)
+        do  
+            echo $i > /sys/class/pwm/pwmchip0/pwm0/duty_cycle 
+            sleep $speed
         done
-        
+
         sleep $pause
-        
-        for i in {$max $min 100000}; do
-                echo $i > /sys/class/pwm/pwmchip0/pwm0/duty_cycle
-                sleep $speed
+
+        for i in $(seq 2400000 -100000 600000)
+        do
+            echo $i > /sys/class/pwm/pwmchip0/pwm0/duty_cycle
+            sleep $speed
         done
-        
-	sleep $pause
-		
+
+                sleep $pause
+
 done
 
 cleanup # call the cleanup routine
