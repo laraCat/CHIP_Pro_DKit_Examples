@@ -6,14 +6,13 @@ max=2400000
 pause=1
 
 cleanup() { # Release the GPIO port
- echo $servo0 > /sys/class/gpio/unexport
+ echo $servo0 > /sys/class/pwm/pwmchip0/unexport
  exit
 }
 
 echo $servo0 > /sys/class/pwm/pwmchip0/export
 echo "normal" > /sys/class/pwm/pwmchip0/pwm0/polarity
 echo 1 > /sys/class/pwm/pwmchip0/pwm0/enable
-#echo normal > /sys/class/pwm/pwmchip0/pwm0/polarity
 echo 20000000 > /sys/class/pwm/pwmchip0/pwm0/period
 echo 0 > /sys/class/pwm/pwmchip0/pwm0/duty_cycle
 
