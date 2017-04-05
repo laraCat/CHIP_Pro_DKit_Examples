@@ -12,7 +12,7 @@ cleanup() { # Release the GPIO port
 trap cleanup EXIT #call the cleanup routine
 
 echo $servo0 > /sys/class/pwm/pwmchip0/export
-echo normal > /sys/class/pwm/pwmchip0/pwm0/polarity
+echo "normal" > /sys/class/pwm/pwmchip0/pwm0/polarity
 echo 1 > /sys/class/pwm/pwmchip0/pwm0/enable
 echo 20000000 > /sys/class/pwm/pwmchip0/pwm0/period
 echo $stopServo > /sys/class/pwm/pwmchip0/pwm0/duty_cycle
@@ -21,6 +21,7 @@ while true; do
                 for i in $(seq 1000000 100000 1400000)
         do
                 echo $i > /sys/class/pwm/pwmchip0/pwm0/duty_cycle
+                echo $i
                 sleep $speed
         done
 
@@ -30,6 +31,7 @@ while true; do
         for i in $(seq 1600000 100000 2000000)
         do
                 echo $i > /sys/class/pwm/pwmchip0/pwm0/duty_cycle
+                echo $i
                 sleep $speed
         done
 
