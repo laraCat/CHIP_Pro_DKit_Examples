@@ -20,6 +20,7 @@ while true; do
         for i in $(seq 600000 100000 2400000)
         do  
             echo $i > /sys/class/pwm/pwmchip0/pwm0/duty_cycle 
+            echo $i
             sleep $speed
         done
 
@@ -28,6 +29,7 @@ while true; do
         for i in $(seq 2400000 -100000 600000)
         do
             echo $i > /sys/class/pwm/pwmchip0/pwm0/duty_cycle
+            echo $i
             sleep $speed
         done
 
