@@ -10,6 +10,8 @@ cleanup() { # Release the GPIO port
  exit
 }
 
+trap 'cleanup' 2
+
 echo $servo0 > /sys/class/pwm/pwmchip0/export
 echo "normal" > /sys/class/pwm/pwmchip0/pwm0/polarity
 echo 1 > /sys/class/pwm/pwmchip0/pwm0/enable
@@ -36,5 +38,3 @@ while true; do
                 sleep $pause
 
 done
-
-cleanup # call the cleanup routine
