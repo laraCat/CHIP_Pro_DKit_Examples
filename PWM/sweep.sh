@@ -1,8 +1,6 @@
 #!/bin/sh
 servo0=0
 speed=0.03
-min=600000
-max=2400000
 pause=1
 
 cleanup() { # Release the GPIO port
